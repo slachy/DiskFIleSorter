@@ -1,1 +1,1 @@
-void sort(int*);
+void merge_sort(int[], int, int);

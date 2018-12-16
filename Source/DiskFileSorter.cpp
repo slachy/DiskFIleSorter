@@ -1,9 +1,61 @@
-void sort(int* numbers)
+void merge(int numbers[], int l, int m, int r)
 {
-    numbers[0] = 2;
-    numbers[1] = 3;
-    numbers[2] = 4;
-    numbers[3] = 5;
-    numbers[4] = 8;
-    numbers[5] = 9;
+    int i, j, k;
+    int n1 = m - l + 1;
+    int n2 = r - m;
+
+    int left[n1], right[n2];
+    for (i = 0; i < n1; ++i)
+    {
+        left[i] = numbers[l + i];
+    } 
+    for (j = 0; j < n2; ++j)
+    {
+        right[j] = numbers[m + 1 + j];
+    }
+
+    i = 0;
+    j = 0;
+    k = l;
+
+    while (i < n1 && j < n2)
+    {
+        if (left[i] <= right[j])
+	{
+	    numbers[k] = left[i];
+	    ++i;
+	}
+	else
+	{
+	    numbers[k] = right[j];
+	    ++j;
+	}
+	++k;
+    }
+
+    while (i < n1)
+    {
+        numbers[k] = left[i];
+	++i;
+	++k;
+    }
+
+    while (j < n2)
+    {
+        numbers[k] = right[j];
+	++j;
+	++k;
+    }
+}
+void merge_sort(int numbers[], int l, int r)
+{
+    if (l < r)
+    {
+        int m = l + (r - l) / 2;
+
+        merge_sort(numbers, l, m);
+        merge_sort(numbers, m + 1, r);
+
+        merge(numbers, l, m, r);
+    }
 }

@@ -15,7 +15,7 @@ TEST(DiskFileSorterTestSuite, SimpleValues)
     int numbers[numOfNumbers] = { 4, 8, 2, 5, 9, 3 };
     int expected[numOfNumbers] = { 2, 3, 4, 5, 8, 9 };
     
-    sort(numbers);
+    merge_sort(numbers, 0, numOfNumbers - 1);
 
     assertArraysEq(numbers, expected, numOfNumbers);
 }
@@ -26,7 +26,7 @@ TEST(DiskFileSorterTestSuite, DifferentValues)
     int numbers[numOfNumbers] = { 4, 1, 2, 6, 9, 3 };
     int expected[numOfNumbers] = { 1, 2, 3, 4, 6, 9 };
     
-    sort(numbers);
+    merge_sort(numbers, 0, numOfNumbers - 1);
 
     assertArraysEq(numbers, expected, numOfNumbers);
 }
