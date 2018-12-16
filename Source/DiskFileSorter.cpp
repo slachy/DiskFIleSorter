@@ -1,10 +1,12 @@
-void merge(int numbers[], int l, int m, int r)
-{
-    int i, j, k;
-    int n1 = m - l + 1;
-    int n2 = r - m;
+#include "DiskFileSorter.hpp"
 
-    int left[n1], right[n2];
+void merge(ulong numbers[], ulong l, ulong m, ulong r)
+{
+    ulong i, j, k;
+    ulong n1 = m - l + 1;
+    ulong n2 = r - m;
+
+    ulong left[n1], right[n2];
     for (i = 0; i < n1; ++i)
     {
         left[i] = numbers[l + i];
@@ -47,11 +49,11 @@ void merge(int numbers[], int l, int m, int r)
 	++k;
     }
 }
-void merge_sort(int numbers[], int l, int r)
+void merge_sort(ulong numbers[], ulong l, ulong r)
 {
     if (l < r)
     {
-        int m = l + (r - l) / 2;
+        ulong m = l + (r - l) / 2;
 
         merge_sort(numbers, l, m);
         merge_sort(numbers, m + 1, r);

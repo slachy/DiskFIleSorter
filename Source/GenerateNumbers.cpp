@@ -4,27 +4,34 @@
 #include <algorithm>
 #include "GenerateNumbers.hpp"
 
-unsigned long int randint(int min, int max)
+ulong randint(int min, int max)
 {
-    return min + (rand() % static_cast<unsigned long int>(max - min + 1));
+    return min + (rand() % static_cast<ulong>(max - min + 1));
 }
 
-void generateNumbers()
+void saveNumbers(std::string filename, ulong numbers[], ulong size)
 {
-    unsigned long int n = 10000000;
-    unsigned long int* arr = new unsigned long int[n];
+    std::ofstream file;
+    file.open(filename);
+    for (ulong i = 0; i < size; ++i)
+    {
+        file << numbers[i] << std::endl;
+    }
+    file.close();
+}
 
-    for (unsigned long int i = 0; i < n; ++i)
+ulong* generateNumbers()
+{
+    ulong n = 10000000;
+    ulong* arr = new ulong[n];
+
+    for (ulong i = 0; i < n; ++i)
     {
         arr[i] = i;
     }
-    std::ofstream file;
-    file.open("numbers.txt");
-    for (unsigned long int i = 0; i < n; ++i)
+    for (ulong i = 0; i < n; ++i)
     {
-        std::swap<unsigned long int>(arr[i], arr[randint(0, n)]);
-        file << arr[i] << std::endl;
+        std::swap<ulong>(arr[i], arr[randint(0, n)]);
     }
-    file.close();
-    delete [] arr;
+    return arr;
 }

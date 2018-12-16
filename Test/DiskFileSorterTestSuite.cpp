@@ -2,9 +2,9 @@
 #include "DiskFileSorter.hpp"
 #include "GenerateNumbers.hpp"
 
-void assertArraysEq(int* first, int* second, int size)
+void assertArraysEq(ulong* first, ulong* second, ulong size)
 {
-    for (int i = 0; i < size; ++i)
+    for (ulong i = 0; i < size; ++i)
     {
         ASSERT_EQ(first[i], second[i]);
     }
@@ -12,9 +12,9 @@ void assertArraysEq(int* first, int* second, int size)
 
 TEST(DiskFileSorterTestSuite, SimpleValues)
 {
-    const int numOfNumbers = 6;
-    int numbers[numOfNumbers] = { 4, 8, 2, 5, 9, 3 };
-    int expected[numOfNumbers] = { 2, 3, 4, 5, 8, 9 };
+    const ulong numOfNumbers = 6;
+    ulong numbers[numOfNumbers] = { 4, 8, 2, 5, 9, 3 };
+    ulong expected[numOfNumbers] = { 2, 3, 4, 5, 8, 9 };
     
     merge_sort(numbers, 0, numOfNumbers - 1);
 
@@ -23,9 +23,9 @@ TEST(DiskFileSorterTestSuite, SimpleValues)
 
 TEST(DiskFileSorterTestSuite, DifferentValues)
 {
-    const int numOfNumbers = 6;
-    int numbers[numOfNumbers] = { 4, 1, 2, 6, 9, 3 };
-    int expected[numOfNumbers] = { 1, 2, 3, 4, 6, 9 };
+    const ulong numOfNumbers = 6;
+    ulong numbers[numOfNumbers] = { 4, 1, 2, 6, 9, 3 };
+    ulong expected[numOfNumbers] = { 1, 2, 3, 4, 6, 9 };
     
     merge_sort(numbers, 0, numOfNumbers - 1);
 
@@ -34,5 +34,10 @@ TEST(DiskFileSorterTestSuite, DifferentValues)
 
 TEST(DiskFileSorterTestSuite, GenerateNumbers)
 {
-    generateNumbers();
+    const ulong numOfNumbers = 10000000;
+    ulong* numbers = new ulong[numOfNumbers];
+    numbers = generateNumbers();
+    saveNumbers("numbers.txt", numbers, numOfNumbers);
+//    merge_sort(numbers, 0, numOfNumbers - 1);
+ //   saveNumbers("sorted_numbers.txt", numbers, numOfNumbers);
 }

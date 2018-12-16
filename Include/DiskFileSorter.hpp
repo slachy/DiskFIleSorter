@@ -1,1 +1,2 @@
-void merge_sort(int[], int, int);
+using ulong = unsigned long int;
+void merge_sort(ulong[], ulong, ulong);
