@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include "DiskFileSorter.hpp"
+#include "GenerateNumbers.hpp"
 
 void assertArraysEq(int* first, int* second, int size)
 {
@@ -29,4 +30,9 @@ TEST(DiskFileSorterTestSuite, DifferentValues)
     merge_sort(numbers, 0, numOfNumbers - 1);
 
     assertArraysEq(numbers, expected, numOfNumbers);
+}
+
+TEST(DiskFileSorterTestSuite, GenerateNumbers)
+{
+    generateNumbers();
 }

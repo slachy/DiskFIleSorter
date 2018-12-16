@@ -7,7 +7,7 @@ set (CMAKE_CXX_STANDARD 14)
 find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS} Source Include)
 
-ADD_LIBRARY(DiskFileSorter Source/DiskFileSorter.cpp)
+ADD_LIBRARY(DiskFileSorter Source/DiskFileSorter.cpp Source/GenerateNumbers.cpp)
 
 # Link runTests with what we want to test and the GTest and pthread library
 add_executable(runTests Test/DiskFileSorterTestSuite.cpp)
