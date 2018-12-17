@@ -1,4 +1,6 @@
 #include <gtest/gtest.h>
+#include <iostream>
+#include <chrono>
 #include "DiskFileSorter.hpp"
 #include "GenerateNumbers.hpp"
 
@@ -14,8 +16,7 @@ TEST(DiskFileSorterTestSuite, SimpleValues)
 {
     const ulong numOfNumbers = 6;
     ulong numbers[numOfNumbers] = { 4, 8, 2, 5, 9, 3 };
-    ulong expected[numOfNumbers] = { 2, 3, 4, 5, 8, 9 };
-    
+    ulong expected[numOfNumbers] = { 2, 3, 4, 5, 8, 9 }; 
     merge_sort(numbers, 0, numOfNumbers - 1);
 
     assertArraysEq(numbers, expected, numOfNumbers);
@@ -32,12 +33,20 @@ TEST(DiskFileSorterTestSuite, DifferentValues)
     assertArraysEq(numbers, expected, numOfNumbers);
 }
 
-TEST(DiskFileSorterTestSuite, GenerateNumbers)
+TEST(DiskFileSorterTestSuite, BigFileMergeSort)
 {
     const ulong numOfNumbers = 10000000;
     ulong* numbers = new ulong[numOfNumbers];
     numbers = generateNumbers();
     saveNumbers("numbers.txt", numbers, numOfNumbers);
-//    merge_sort(numbers, 0, numOfNumbers - 1);
- //   saveNumbers("sorted_numbers.txt", numbers, numOfNumbers);
+
+    using namespace std::chrono;
+    high_resolution_clock::time_point start = high_resolution_clock::now();
+    merge_sort(numbers, 0, numOfNumbers - 1);
+    high_resolution_clock::time_point end = high_resolution_clock::now();
+
+    auto duration = duration_cast<microseconds>( end - start).count();
+    std::cout << duration << std::endl;;
+
+    saveNumbers("sorted_numbers.txt", numbers, numOfNumbers);
 }

@@ -6,7 +6,8 @@ void merge(ulong numbers[], ulong l, ulong m, ulong r)
     ulong n1 = m - l + 1;
     ulong n2 = r - m;
 
-    ulong left[n1], right[n2];
+    ulong* left = new ulong[n1];
+    ulong* right = new ulong[n2];
     for (i = 0; i < n1; ++i)
     {
         left[i] = numbers[l + i];
@@ -48,6 +49,9 @@ void merge(ulong numbers[], ulong l, ulong m, ulong r)
 	++j;
 	++k;
     }
+
+    delete [] left;
+    delete [] right;
 }
 void merge_sort(ulong numbers[], ulong l, ulong r)
 {
