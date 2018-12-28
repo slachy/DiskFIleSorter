@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 #include <iostream>
 #include <chrono>
+
 #include "DiskFileSorter.hpp"
 #include "GenerateNumbers.hpp"
 
@@ -46,7 +47,7 @@ TEST(DiskFileSorterTestSuite, BigFileMergeSort)
     high_resolution_clock::time_point end = high_resolution_clock::now();
 
     auto duration = duration_cast<microseconds>( end - start).count();
-    std::cout << duration << std::endl;;
+    std::cout << "Execution time: " << duration << std::endl;;
 
     saveNumbers("sorted_numbers.txt", numbers, numOfNumbers);
 }
